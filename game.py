@@ -32,5 +32,8 @@ board = [Space("START!",0),
     Space("You wake up as a girl one morning ±0 points",0),
     Space("GOAL!",0)]
 
+#Test that board was created properly
+'''
 for space in board:
     print(space.getText() + " : " + str(space.getValue()))
+'''
