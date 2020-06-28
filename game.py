@@ -1,4 +1,19 @@
 from random import randint
+from sys import argv
+
+mode = ""
+try:
+    arg = argv[1].lower()
+    arg = arg.replace("-","")
+    if arg == "l" or arg == "long":
+        mode = "LONG"
+    elif arg == "s" or arg == "short":
+        mode = "SHORT"
+except:
+    mode = input("Do you want to play Long or Short mode> ").upper()
+
+#Test mode set correctly
+#print(mode)
 
 class Space:
     def __init__(self, text, value):
