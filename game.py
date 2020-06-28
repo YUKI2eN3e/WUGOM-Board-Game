@@ -1,3 +1,5 @@
+from random import randint
+
 class Space:
     def __init__(self, text, value):
         self.text = text
@@ -36,4 +38,32 @@ board = [Space("START!",0),
 '''
 for space in board:
     print(space.getText() + " : " + str(space.getValue()))
+'''
+
+def rollDice():
+    return randint(1,6)
+
+class Player():
+    def __init__(self, name):
+        self.name = name
+        self.score = 0
+    def getName(self):
+        return self.name
+    def getScore(self):
+        return self.score
+    def updateScore(self, points):
+        self.score = self.score + points
+
+num_players = int(input("How many players are there> "))
+players = []
+p = 0
+while p < num_players:
+    name = input("Player %d enter your name> " % (p+1))
+    players.append(Player(name))
+    p += 1
+
+#Test players have been created
+'''
+for player in players:
+    print(player.getName() + " : " + str(player.getScore()))
 '''
