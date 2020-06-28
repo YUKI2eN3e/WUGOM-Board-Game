@@ -1,5 +1,6 @@
 from random import randint
 from sys import argv
+from msvcrt import getch
 
 mode = ""
 try:
@@ -69,17 +70,28 @@ def rollDice():
         print("\u2684")
     elif die == 6:
         print("\u2685")
+    return die
 
 class Player():
     def __init__(self, name):
         self.name = name
         self.score = 0
+        self.position = 0
+        self.playing = True
     def getName(self):
         return self.name
     def getScore(self):
         return self.score
     def updateScore(self, points):
         self.score = self.score + points
+    def getPosition(self):
+        return self.position
+    def updatePosition(self, position):
+        self.position = position
+    def isPlaying(self):
+        return self.playing
+    def finished(self):
+        self.playing = False
 
 num_players = int(input("How many players are there> "))
 players = []
@@ -94,3 +106,40 @@ while p < num_players:
 for player in players:
     print(player.getName() + " : " + str(player.getScore()))
 '''
+
+def isPlaying():
+    for player in players:
+        if player.isPlaying():
+            return True
+
+while isPlaying():
+    for player in players:
+        if player.isPlaying():
+            print("\n%s press a key to roll the dice" % player.getName())
+            getch()
+            die = rollDice()
+            if mode == "LONG":
+                if player.getPosition() + die <= len(board)-1:
+                    player.updatePosition(player.getPosition()+die)
+                    print(board[player.getPosition()].getText())
+                    player.updateScore(board[player.getPosition()].getValue())
+                    if player.getPosition() == len(board)-1:
+                        #print("GOAL!")
+                        player.finished()
+                elif player.getPosition() + die > len(board)-1:
+                    player.updatePosition((player.getPosition()+die) - len(board))
+                    print(board[player.getPosition()].getText())
+                    player.updateScore(board[player.getPosition()].getValue())
+            if mode == "SHORT":
+                if player.getPosition() + die < len(board)-1:
+                    player.updatePosition(player.getPosition()+die)
+                    print(board[player.getPosition()].getText())
+                    player.updateScore(board[player.getPosition()].getValue())
+                else:
+                    print("GOAL!")
+                    player.finished()
+
+ranking = sorted(players, key=lambda player: player.getScore(), reverse=True)
+print("\n---------------------------------------------------")
+for p in ranking:
+    print("%s: %d" % (p.getName(), p.getScore()))
