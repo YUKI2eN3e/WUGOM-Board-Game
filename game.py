@@ -41,7 +41,19 @@ for space in board:
 '''
 
 def rollDice():
-    return randint(1,6)
+    die = randint(1,6)
+    if die == 1:
+        print("\u2680")
+    elif die == 2:
+        print("\u2681")
+    elif die == 3:
+        print("\u2682")
+    elif die == 4:
+        print("\u2683")
+    elif die == 5:
+        print("\u2684")
+    elif die == 6:
+        print("\u2685")
 
 class Player():
     def __init__(self, name):
