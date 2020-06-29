@@ -1,6 +1,8 @@
 from random import randint
 from sys import argv
-from msvcrt import getch
+from platform import system
+if system() == "Windows":
+    from msvcrt import getch
 
 mode = ""
 try:
@@ -115,8 +117,11 @@ def isPlaying():
 while isPlaying():
     for player in players:
         if player.isPlaying():
-            print("\n%s press a key to roll the dice" % player.getName())
-            getch()
+            if system() == "Windows":
+                print("\n%s press a key to roll the dice" % player.getName())
+                getch()
+            else:
+                print("\n%s press ENTER to roll the dice" % player.getName())
             die = rollDice()
             if mode == "LONG":
                 if player.getPosition() + die <= len(board)-1:
