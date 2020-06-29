@@ -121,7 +121,7 @@ while isPlaying():
                 print("\n%s press a key to roll the dice" % player.getName())
                 getch()
             else:
-                print("\n%s press ENTER to roll the dice" % player.getName())
+                input("\n%s press ENTER to roll the dice" % player.getName())
             die = rollDice()
             if mode == "LONG":
                 if player.getPosition() + die <= len(board)-1:
