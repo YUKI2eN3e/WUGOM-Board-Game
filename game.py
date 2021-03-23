@@ -14,7 +14,10 @@ try:
         mode = "SHORT"
 except:
     mode = input("Do you want to play Long or Short mode> ").upper()
-
+if mode == "L":
+    mode = "LONG"
+elif mode == "S":
+    mode = "SHORT"
 #Test mode set correctly
 #print(mode)
 
