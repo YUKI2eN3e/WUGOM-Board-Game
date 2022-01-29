@@ -54,7 +54,7 @@ board = [Space("START!",0),
     Space("A manga you borrowed was interesting [cyan]+80[/cyan] points",80),
     Space("Work [red]-250[/red] points",-250),
     Space("You wake up as a girl one morning [white]±0[/white] points",0),
-    Space("[bold]GOAL![/bold]",0)]
+    Space("[bold blink]GOAL![/bold blink]",0)]
 
 #Test that board was created properly
 '''
@@ -145,7 +145,7 @@ while isPlaying():
                     print(board[player.getPosition()].getText())
                     player.updateScore(board[player.getPosition()].getValue())
                 else:
-                    print("[bold]GOAL![/bold]")
+                    print("[bold blink]GOAL![/bold blink]")
                     player.finished()
 
 ranking = sorted(players, key=lambda player: player.getScore(), reverse=True)
